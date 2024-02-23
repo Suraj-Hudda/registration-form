@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number System Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            text-align: center;
+            color: white;
+        }
+
+        #container {
+            background-color:black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 0 auto;
+            margin-top: 100px;
+            box-shadow: 0px 0px 6px 3px white;
+        }
+
+        h1 {
+            color:white;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        select, input {
+            width: 90%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+        button
+        {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Number System Converter</h1>
+        <form id="converter-form">
+            <label for="from-base">From Base:</label>
+            <select id="from-base">
+                <option value="2">Binary</option>
+                <option value="8">Octal</option>
+                <option value="10">Decimal</option>
+                <option value="16">Hexadecimal</option>
+            </select>
+
+            <label for="number">Enter Number:</label>
+            <input type="text" id="number" placeholder="Enter number to convert">
+
+            <label for="to-base">To Base:</label>
+            <select id="to-base">
+                <option value="2">Binary</option>
+                <option value="8">Octal</option>
+                <option value="10">Decimal</option>
+                <option value="16">Hexadecimal</option>
+            </select>
+
+            <button type="button" id="convert-button">Convert</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("convert-button").addEventListener("click", function () {
+            const fromBase = parseInt(document.getElementById("from-base").value);
+            const toBase = parseInt(document.getElementById("to-base").value);
+            const inputNumber = document.getElementById("number").value;
+
+            try {
+                const convertedNumber = parseInt(inputNumber, fromBase).toString(toBase);
+                document.getElementById("result").textContent = `Result: ${convertedNumber}`;
+            } catch (error) {
+                document.getElementById("result").textContent = "Invalid input. Please check your numbers and bases.";
+            }
+        });
+    </script>
+</body>
+</html>
